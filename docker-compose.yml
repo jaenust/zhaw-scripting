@@ -11,6 +11,8 @@ services:
       JUPYTER_TOKEN: "dev"  # change or set empty to disable token
     volumes:
       - ./notebooks:/home/jovyan/work
+      - ./datasets:/home/jovyan/work/datasets
+      - ./outputs:/home/jovyan/work/outputs
       - conda_store:/opt/conda
     command: start-notebook.sh --NotebookApp.ip=0.0.0.0 --NotebookApp.port=8888 --NotebookApp.notebook_dir=/home/jovyan/work
     restart: unless-stopped
