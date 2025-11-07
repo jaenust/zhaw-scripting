@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  jupyter:
+    image: jupyter/minimal-notebook:latest
+    container_name: jupyter
+    ports:
+      - "8888:8888"
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+      JUPYTER_TOKEN: "dev"  # change or set empty to disable token
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - conda_store:/opt/conda
+    command: start-notebook.sh --NotebookApp.ip=0.0.0.0 --NotebookApp.port=8888 --NotebookApp.notebook_dir=/home/jovyan/work
+    restart: unless-stopped
+
+volumes:
+  conda_store:
+
